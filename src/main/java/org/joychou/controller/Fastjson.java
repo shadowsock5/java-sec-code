@@ -3,6 +3,8 @@ package org.joychou.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
+import com.alibaba.fastjson.parser.ParserConfig;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,10 @@ public class Fastjson {
         System.out.println(params);
         try {
             // 将post提交的string转换为json
+            //ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
+            //ParserConfig.global.setAutoTypeSupport(true);
             JSONObject ob = JSON.parseObject(params);
-            return ob.get("name").toString();
+            return ob.toString();
         }catch (Exception e){
             e.printStackTrace();
             return e.toString();

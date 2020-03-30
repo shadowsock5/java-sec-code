@@ -159,14 +159,13 @@ public class FileUpload {
     }
 
     /**
-     * 不建议使用transferTo，因为原始的MultipartFile会被覆盖
      * https://stackoverflow.com/questions/24339990/how-to-convert-a-multipart-file-to-file
      *
      * @param multiFile
      * @return
      */
     private File convert(MultipartFile multiFile) throws Exception {
-        String fileName = multiFile.getOriginalFilename();
+        String fileName = ""; //multiFile.getOriginal();
         String suffix = fileName.substring(fileName.lastIndexOf("."));
         UUID uuid = Generators.timeBasedGenerator().generate();
 

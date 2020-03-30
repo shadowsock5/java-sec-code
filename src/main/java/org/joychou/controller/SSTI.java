@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.apache.velocity.app.Velocity;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+
 import java.io.StringWriter;
 
 @RestController
@@ -25,6 +29,20 @@ public class SSTI {
      */
     @GetMapping("/velocity")
     private static void velocity(String template){
+        Velocity.init();
+
+        VelocityContext context = new VelocityContext();
+
+        context.put("author", "Elliot A.");
+        context.put("address", "217 E Broadway");
+        context.put("phone", "555-1337");
+
+        StringWriter swOut = new StringWriter();
+        Velocity.evaluate(context, swOut, "test", template);
+    }
+
+    @GetMapping("/freemarker")
+    private static void freemarker(String template){
         Velocity.init();
 
         VelocityContext context = new VelocityContext();

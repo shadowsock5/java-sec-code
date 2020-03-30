@@ -41,13 +41,49 @@
             <version>8.0.12</version>
         </dependency>
 
-        <!-- 处理json数据 -->
+        <!-- 处理json数据(fastjson)-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.24</version>
+            <version>1.2.66</version>
         </dependency>
+
+
+		<!-- 处理json数据(jackson)-->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.3</version>
+    	</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.9</version>
+		</dependency>		
+
+
+    <!-- https://mvnrepository.com/artifact/hikari-cp/hikari-cp -->
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>3.4.1</version>
+    </dependency>
+
+	
+<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+<dependency>
+    <groupId>org.freemarker</groupId>
+    <artifactId>freemarker</artifactId>
+    <version>2.3.20</version>
+</dependency>
 
 
         <!-- jdom解析xml 最新版本为2.0.6 时间为2015-02-28 https://github.com/hunterhacker/jdom/releases-->
