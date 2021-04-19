@@ -5,12 +5,14 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import org.joychou.dao.User;
 import org.joychou.util.WebUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
+@RequestMapping("/xstream")
 public class XStreamRce {
 
     /**
@@ -20,7 +22,7 @@ public class XStreamRce {
      *
      * @author JoyChou @2019-07-26
      */
-    @PostMapping("/xstream")
+    @PostMapping("/deserialize")
     public String parseXml(HttpServletRequest request) throws Exception{
         String xml = WebUtils.getRequestBody(request);
         XStream xstream = new XStream(new DomDriver());

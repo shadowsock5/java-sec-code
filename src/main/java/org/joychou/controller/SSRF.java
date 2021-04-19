@@ -270,7 +270,7 @@ public class SSRF {
     public static String IOUtils(@RequestParam String url) {
         try {
             // IOUtils.toByteArray内部用URLConnection进行了封装
-            byte[] b = IOUtils.toByteArray(URI.create(url));
+//            byte[] b = IOUtils.toByteArray(URI.create(url));
         } catch (Exception e) {
             return "exception: " + e.toString();
         }

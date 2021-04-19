@@ -17,6 +17,6 @@ public class XmlDecoderRCE {
             InputStream in = request.getInputStream();
             XMLDecoder d = new XMLDecoder(in);
             Object result = d.readObject(); //Deserialization happen here
-            return "xstream";
+            return result.toString();
         }
 }

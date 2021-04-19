@@ -12,6 +12,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source> <!-- mvn clean package-->
         <maven.compiler.target>1.8</maven.compiler.target>
+        <easy-excel-version>2.2.7</easy-excel-version>
     </properties>
 
 
@@ -27,6 +28,37 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.25</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-symbol-solver-core</artifactId>
+            <version>3.15.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.15.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder-jsp</artifactId>
+            <version>1.2.2</version>
+        </dependency>
 
         <!-- 添加thymeleaf为了动态解析html-->
         <dependency>
@@ -40,6 +72,13 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.12</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <version>5.1.47</version>-->
+<!--        </dependency>-->
+
 
         <!-- 处理json数据(fastjson)-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -47,9 +86,50 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.66</version>
+            <version>1.2.60</version>
         </dependency>
 
+        <!-- 阿里开源的表格导出-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>${easy-excel-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <!--            <version>1.2.4</version>-->
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client-minicluster</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.excalibur</groupId>-->
+<!--            <artifactId>excalibur-spring-boot-starter-shiro</artifactId>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/net.portswigger.burp.extender/burp-extender-api -->
+        <dependency>
+            <groupId>net.portswigger.burp.extender</groupId>
+            <artifactId>burp-extender-api</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.cloudhopper.proxool/proxool -->
+        <dependency>
+            <groupId>com.cloudhopper.proxool</groupId>
+            <artifactId>proxool</artifactId>
+            <version>0.9.1</version>
+        </dependency>
 
 		<!-- 处理json数据(jackson)-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -67,23 +147,138 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.9.9</version>
-		</dependency>		
+		</dependency>
 
 
-    <!-- https://mvnrepository.com/artifact/hikari-cp/hikari-cp -->
-    <dependency>
-      <groupId>com.zaxxer</groupId>
-      <artifactId>HikariCP</artifactId>
-      <version>3.4.1</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.1.2.Final</version>
+        </dependency>
 
-	
-<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
-<dependency>
-    <groupId>org.freemarker</groupId>
-    <artifactId>freemarker</artifactId>
-    <version>2.3.20</version>
-</dependency>
+        <!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.xbean/xbean-reflect -->
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-reflect</artifactId>
+            <version>4.16</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-proxy -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-proxy</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ibatis</groupId>
+            <artifactId>ibatis-sqlmap</artifactId>
+            <version>2.3.4.726</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax</groupId>-->
+<!--            <artifactId>javaee-api</artifactId>-->
+<!--            <version>8.0.1</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>slide</groupId>
+            <artifactId>slide-kernel</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>cocoon</groupId>
+            <artifactId>cocoon-slide</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.codahale.metrics</groupId>
+            <artifactId>metrics-healthchecks</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.anteros</groupId>
+            <artifactId>Anteros-Core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>br.com.anteros</groupId>
+            <artifactId>Anteros-DBCP</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-jms-pool -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-jms-pool</artifactId>
+            <version>5.9.0</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/hikari-cp/hikari-cp -->
+        <dependency>
+          <groupId>com.zaxxer</groupId>
+          <artifactId>HikariCP</artifactId>
+          <version>3.4.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.aoju/bus-proxy -->
+        <dependency>
+            <groupId>org.aoju</groupId>
+            <artifactId>bus-proxy</artifactId>
+            <version>5.6.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.openjpa/openjpa -->
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.20</version>
+        </dependency>
 
 
         <!-- jdom解析xml 最新版本为2.0.6 时间为2015-02-28 https://github.com/hunterhacker/jdom/releases-->
@@ -112,7 +307,7 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.1</version>
+            <version>3.2.1</version>
         </dependency>
 
         <dependency>
@@ -229,20 +424,20 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.10</version>
+            <version>1.4.13</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.10-FINAL</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi</artifactId>-->
+<!--            <version>3.11</version>-->
+<!--        </dependency>-->
 
         <!-- vuln maven jar. Solve xlsx.-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.9</version> <!-- 3.10-FINAL -->
+            <version>3.15</version> <!-- 3.10-FINAL -->
         </dependency>
 
         <dependency>
@@ -264,6 +459,34 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+
+        <!-- test for fastjson 1.2.68 autotype bypass -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>
@@ -285,8 +508,49 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+            </plugin>
+
+
+            <!-- 参考：https://github.com/momosecurity/mosec-maven-plugin -->
+            <plugin>
+                <groupId>com.immomo.momosec</groupId>
+                <artifactId>mosec-maven-plugin</artifactId>
+                <version>1.0.6</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>  <!-- test过程执行 -->
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <endpoint>http://192.168.85.129:9000/api/plugin</endpoint>
+                    <severityLevel>High</severityLevel>
+                    <onlyProvenance>true</onlyProvenance>
+                    <failOnVuln>true</failOnVuln>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
+    <repositories>
+
+    </repositories>
+
+    <!--   陌陌的maven插件：https://github.com/momosecurity/mosec-maven-plugin  -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>gh</id>
+            <url>https://raw.githubusercontent.com/momosecurity/mosec-maven-plugin/master/mvn-repo/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 
 </project>

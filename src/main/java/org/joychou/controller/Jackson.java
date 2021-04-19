@@ -85,7 +85,6 @@ public class Jackson {
     @RequestMapping(value = "/deserialize1", method = {RequestMethod.POST})
     @ResponseBody
     public static String deserialize1(@RequestBody String params) throws IOException {
-        // 如果Content-Type不设置application/json格式，post数据会被url编码
         System.out.println(params);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -101,7 +100,6 @@ public class Jackson {
     @RequestMapping(value = "/deserialize2", method = {RequestMethod.POST})
     @ResponseBody
     public static String deserialize2(@RequestBody String params) throws IOException {
-        // 如果Content-Type不设置application/json格式，post数据会被url编码
         System.out.println(params);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -135,13 +133,45 @@ public class Jackson {
     @RequestMapping(value = "/deserialize3", method = {RequestMethod.POST})
     @ResponseBody
     public static String deserialize3(@RequestBody String params) throws IOException {
-        // 如果Content-Type不设置application/json格式，post数据会被url编码
         System.out.println(params);
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 //            objectMapper.enableDefaultTyping();
             Object obj = objectMapper.readValue(params, AnotherBean.class);
             return obj.toString();
+        }  catch (Exception e){
+            e.printStackTrace();
+            return e.toString();
+        }
+    }
+
+    @RequestMapping(value = "/deserialize4", method = {RequestMethod.POST})
+    @ResponseBody
+    public static String deserialize4(@RequestBody String params) throws IOException {
+        System.out.println(params);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+//            objectMapper.enableDefaultTyping();
+            Object obj = objectMapper.readValue(params, AnotherBean.class);
+            String result = objectMapper.writeValueAsString(obj);
+            return result;
+        }  catch (Exception e){
+            e.printStackTrace();
+            return e.toString();
+        }
+    }
+
+
+    @RequestMapping(value = "/deserialize/vuln", method = {RequestMethod.POST})
+    @ResponseBody
+    public static String deserialize_vuln(@RequestBody String params) throws IOException {
+        System.out.println(params);
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enableDefaultTyping();
+            Object obj = objectMapper.readValue(params, Object.class);
+            String result = objectMapper.writeValueAsString(obj);
+            return result;
         }  catch (Exception e){
             e.printStackTrace();
             return e.toString();

@@ -22,7 +22,58 @@
     </select>
 
 
+    <select id="findByUserNameSecIn" resultMap="User">
+        select * from users where username in
+        <foreach collection="username" item="username" open="(" separator="," close=")">
+        #{username}
+        </foreach>
+    </select>
+
+
     <select id="OrderByUsername" resultMap="User">
         select * from users order by id asc limit 1
     </select>
+
+
+    <!-- #{order}会带上'  导致起不到排序的效果-->
+    <select id="OrderByVuln" resultMap="User">
+        select * from users order by #{order}
+    </select>
+
+
+    <!-- ${order}不会带上' 可以起到排序的效果，但是同时引入的sqli的问题-->
+    <select id="OrderByVuln2" resultMap="User">
+        select * from users order by ${order}
+    </select>
+
+
+    <select id="OrderBySec" resultMap="User">
+        select * from users order by
+        <choose>
+            <when test="order == 'password'">
+                password
+            </when>
+            <when test="order == 'username'">
+                username
+            </when>
+            <otherwise>
+                id
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- https://b1ngz.github.io/java-sql-injection-note/   -->
+    <select id="OrderBySec2" resultMap="User">
+        SELECT * FROM users
+        <choose>
+            <when test="order == 'username' or order == 'password'">
+                order by ${order}
+            </when>
+            <otherwise>
+                order by id
+            </otherwise>
+        </choose>
+    </select>
+
+
 </mapper>

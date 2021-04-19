@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import org.owasp.encoder.Encode;
+
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -90,5 +92,12 @@ public class XSS {
         origin = StringUtils.replace(origin, "'", "&#x27;");
         origin = StringUtils.replace(origin, "/", "&#x2F;");
         return origin;
+    }
+
+    @RequestMapping("/safe_encoder")
+    @ResponseBody
+    public static String safe_encoder(String xss)
+    {
+        return Encode.forHtml(xss);
     }
 }
