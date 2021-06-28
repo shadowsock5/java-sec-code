@@ -529,41 +529,11 @@
             </plugin>
 
 
-            <!-- 参考：https://github.com/momosecurity/mosec-maven-plugin -->
-            <plugin>
-                <groupId>com.immomo.momosec</groupId>
-                <artifactId>mosec-maven-plugin</artifactId>
-                <version>1.0.6</version>
-                <executions>
-                    <execution>
-                        <id>test</id>
-                        <goals>
-                            <goal>test</goal>  <!-- test过程执行 -->
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <endpoint>http://192.168.85.129:9000/api/plugin</endpoint>
-                    <severityLevel>High</severityLevel>
-                    <onlyProvenance>true</onlyProvenance>
-                    <failOnVuln>true</failOnVuln>
-                </configuration>
-            </plugin>
-
-
         </plugins>
     </build>
     <repositories>
 
     </repositories>
-
-    <!--   陌陌的maven插件：https://github.com/momosecurity/mosec-maven-plugin  -->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gh</id>
-            <url>https://raw.githubusercontent.com/momosecurity/mosec-maven-plugin/master/mvn-repo/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
 
 </project>
