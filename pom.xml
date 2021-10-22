@@ -12,7 +12,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source> <!-- mvn clean package-->
         <maven.compiler.target>1.8</maven.compiler.target>
-        <easy-excel-version>2.2.7</easy-excel-version>
+        <easy-excel-version>3.0.1</easy-excel-version>
     </properties>
 
 
