@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
@@ -35,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private String[] csrfExcludeUrl;
 
     @Value("${joychou.security.csrf.method}")
-    private String[] csrfMethod = {"POST"};
+    private String[] csrfMethod = {"PUT"};
 
     private RequestMatcher csrfRequestMatcher = new RequestMatcher() {
 
@@ -68,9 +69,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // spring security login settings
         http.authorizeRequests()
-                .antMatchers("/css/**", "/js/**").permitAll() // permit static resources
+                .antMatchers("/css/**", "/js/**", "/login2", "/login3").permitAll() // permit static resources
                 .anyRequest().authenticated().and() // any request authenticated except above static resources
-                .formLogin().loginPage("/login").permitAll() // permit all to access /login page
+                .formLogin().loginPage("/login") // permit all to access /login page
+                .permitAll() // permit all to access /login page
                 .successHandler(new LoginSuccessHandler())
                 .failureHandler(new LoginFailureHandler()).and()
                 .logout().logoutUrl("/logout").permitAll().and()
@@ -101,9 +103,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
-                .withUser("joychou").password("joychou123").roles("USER").and()
-                .withUser("admin").password("admin123").roles("USER", "ADMIN");
+                .inMemoryAuthentication()    // 从内存中获取
+//                .withUser("joychou").password("joychou123").roles("USER").and()
+//                .withUser("admin").password("admin123").roles("USER", "ADMIN");
+                // SpringBoot升级到了2.0之后的版本，Security也由原来的版本4升级到了5
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("admin").password(new BCryptPasswordEncoder().encode("admin123")).roles("USER", "ADMIN").and()
+                .withUser("cqq").password(new BCryptPasswordEncoder().encode("cqq123")).roles("USER");
     }
 }
 

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  有关如何配置 ASP.NET 应用程序的详细信息，请访问
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+  <configSections>
+    <section name="nlog" type="NLog.Config.ConfigSectionHandler, NLog" />
+    <section name="autofac" type="Autofac.Configuration.SectionHandler, Autofac.Configuration" />
+  </configSections>
+  <autofac configSource="Config\AutoFac.config"></autofac>
+  <nlog configSource="Config\NLog.config"></nlog>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Autofac" publicKeyToken="17863af14b0044da" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.0" newVersion="3.5.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+  <system.web>
+    <compilation targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" requestValidationMode="2.0" maxRequestLength="10240" />
+    <pages validateRequest="true" enableEventValidation="false" controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+      <controls>
+        <add tagPrefix="anthem" namespace="Anthem" assembly="Anthem" />
+        <add tagPrefix="easy" namespace="Prolliance.Common.UI" assembly="Prolliance.Common.UI" />
+        <add tagPrefix="easy" namespace="Prolliance.Common.UI.WebControls" assembly="Prolliance.Common.UI" />
+        <add tagPrefix="easy" tagName="EasyView" src="~/controls/easyview.ascx" />
+        <add tagPrefix="easy" tagName="EasySearch" src="~/controls/easysearch.ascx" />
+        <add tagPrefix="easy" tagName="EasyBrowse" src="~/controls/easybrowse.ascx" />
+        <add tagPrefix="easy" tagName="ExecSql" src="~/controls/EasySql.ascx" />
+      </controls>
+    </pages>
+    <sessionState mode="StateServer" stateConnectionString="tcpip=127.0.0.1:42424" cookieless="false" timeout="120">
+      <providers>
+        <add name="DefaultSessionProvider" type="System.Web.Providers.DefaultSessionStateProvider, System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" connectionStringName="DefaultConnection" />
+      </providers>
+    </sessionState>
+  </system.web>
+  <connectionStrings>
+    <clear />
+    <add name="platform" providerName="SqlServer" connectionString="sX7OO49z6gzaFB6V3D39fwvU8BHRh//91dJ76hzGX08SKZARgMP+zKzsrOe3CyvDD+Vkdqp2Qwpp8vp6PH50BIcbtBtuFhtcxXE7iLkoGQ4xMPUyMdhk+2cV+ydKAI6crbc+a/MfkavzIyO1TKB9Q101L/w6vZTopHyfJBVkkc99qdLxLzOu5JMlPvBfQCk+Z9MT4A+Tdovd/KU1/+XtfNxbkOkS9HA4" />
+    <add name="biz" providerName="SqlServer" connectionString="sX7OO49z6gzaFB6V3D39fwvU8BHRh//91dJ76hzGX08SKZARgMP+zKzsrOe3CyvDD+Vkdqp2Qwpp8vp6PH50BIcbtBtuFhtcxXE7iLkoGQ4xMPUyMdhk+2cV+ydKAI6crbc+a/MfkavzIyO1TKB9Q101L/w6vZTopHyfJBVkkc99qdLxLzOu5JMlPvBfQCk+Z9MT4A+Tdovd/KU1/+XtfNxbkOkS9HA4" />
+    <add name="license" providerName="SqlServer" connectionString="sX7OO49z6gzaFB6V3D39fwvU8BHRh//91dJ76hzGX08SKZARgMP+zK/NbaotlwE0uLlq2dqYRufIU9/Kz+SnAhV5AyLNDtl5PNQoE9+hV5nV53xwl+88SZtX2FEQDmKUcEDc62zqyd9a9A7dCC0xx8outHJCkiN/nGNKYQiQogyVeUWjY762s0zD+83c872tKTD/XipgVxlK+OB79s8y9jw8GhtC5NUI" />
+  </connectionStrings>
+  <appSettings>
+    <add key="IsRecordSQL" value="False" />
+    <!--登录配置：0为测试环境，1为正式环境-->
+    <add key="LoginConfig" value="0" /> 
+
+    <!--平台数据驱动程序影响的一级目录名称，要小写-->
+    <add key="PlatformFolders" value="common,home" />
+
+    <!--邮件服务器配置 开始-->
+    <add key="SmtpServer" value="mail-cn.siemens.net" />
+    <add key="SmtpServerPort" value="25" />
+    <add key="SmtpServerEnableSsl" value="true" />
+    <add key="MailFrom" value="test@siemens.com" />
+    <add key="MailFromPassword" value="Prolliance@20092" />
+    <!--邮件服务器配置 结束-->
+
+    <!--分销商数据上报邮箱-->
+    <add key="DataUpNoticeTitle" value="@FYEARNAME财年@YEARMONTH数据上报提醒" />
+    <add key="DataUpNoticeBody" value="@FYEARNAME财年@YEARMONTH数据上报计划已经下发，请登录系统按时上报，谢谢支持。" />
+    <add key="TestMode" value="true" />
+    <add key="TestEmail" value="wangshaolei@prolliance.cn" />
+
+<add key="WordImageScale" value="15" />
+    <add key="WordUpdateCatalog" value="false" />
+    <add key="EnablePasswordSafe" value="false" />
+    <add key="ReportOutputCountRow" value="false" />
+<add key="DefaultPassword" value="+o/OdWUx/iI=" />
+
+
+ 	<!--estemp配置-->
+	<add key="ESealServiceUrl" value="https://www.estamp-test.siemens.com/contract-web" />
+	<add key="ESealAppID" value="E2E" />
+	<add key="ESealKey" value="A8E3DbI0J0N2A3G0P5I0FdG0C1GfK6PeB4B8N4J7" />
+	<add key="ESealOpenTrace" value="true" />   
+
+	<!--单点系统访问地址-->
+    	<add key="SSOBaseURL" value="https://www.e2e-test.siemens.com.cn/sso" />
+
+    <!--CAS系统访问地址-->
+    <add key="CASURL" value="https://cas.e2e-test.siemens.com.cn" />
+    <!--CAS系统注册地址-->
+    <add key="CASRegisterURL" value="https://www.e2e-test.siemens.com.cn/lpmgt/Home/SSOLogin.aspx" />
+    <!--CAS系统首页-->
+    <add key="CASMainURL" value="https://cas.e2e-test.siemens.com.cn" />
+
+
+	<add key="QCCUrl" value="https://edi-uat.industry.siemens.com.cn/TrustIT_QIchachaAPI/" />
+    	<add key="QCCKey" value="SI" />
+    	<add key="QCCSecret" value="b78ef528fb82c67c2c4640ac8e55004d" />
+
+	<add key="FanYiUrl" value="https://fanyi-api.baidu.com/api/trans/vip/translate?" />
+	<add key="FanYiAppID" value="20200520000463078" />
+	<add key="FanYiSecret" value="nj9pOaobZArqjE_flizY" />
+
+	<add key="LogMode" value="true" />
+
+	<add key="IFASubmitUrl" value="https://pekw270a.ad001.siemens.net/api/CmdAccount/CreateTask_NewAccount" />
+    	<add key="SieSaleSubmitUrl" value="https://pekw270a.ad001.siemens.net/api/GoiOppt/CreateTask_NewOppt" />
+
+	<add key="DevMode" value="true" />
+
+	 <!--api配置-->
+   <add key="ApiLoginAccount" value="admin" />
+    <add key="ApiLoginPassword" value="e2etest123.com" />
+    <add key="ApiAppsecret" value="a6746d25f294444e9d9e7f13d799945f" />
+    <add key="ApiLoginUrl" value="https://www.e2e-test.siemens.com.cn/api/v2/MembershipAuth/Login" />
+    <add key="ApiEndUserUrl" value="https://www.e2e-test.siemens.com.cn/api/v4/order/newcustomer" />
+   
+        <add key="SieLicenseHomePath" value="D:\wwwroot\www.e2e\SI.Cert\Uploads\LP\" />
+<add key="SieLicenseSourceCode" value="LP" />
+<add key="SieLicenseWaterMark" value="下载无效 Download Invalid" />
+
+<add key="SieLicenseClearColor" value="" />
+
+  </appSettings>
+    <system.webServer>
+        <defaultDocument>
+            <files>
+                <clear />
+                <add value="default.aspx" />
+            </files>
+        </defaultDocument>
+        <staticContent>
+            <mimeMap fileExtension=".7z" mimeType="application/octet-stream" />
+	   
+        </staticContent>
+        <modules>
+            <remove name="FineUIProScriptModule" />
+        </modules>
+      
+    </system.webServer>
+
+</configuration>

@@ -1,7 +1,7 @@
 package org.joychou.config;
 
 import org.joychou.security.CustomCorsProcessor;
-import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
+//import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -10,11 +10,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 @Configuration
-public class CustomCorsConfig extends WebMvcRegistrationsAdapter {
+//public class CustomCorsConfig extends WebMvcRegistrationsAdapter {
+public class CustomCorsConfig implements WebMvcConfigurer {    // Ref: https://www.baeldung.com/web-mvc-configurer-adapter-deprecated
 
-    /**
-     * 设置cors origin白名单。区分http和https，并且默认不会拦截同域请求。
-     */
+/**
+ * 设置cors origin白名单。区分http和https，并且默认不会拦截同域请求。
+ */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -31,10 +32,10 @@ public class CustomCorsConfig extends WebMvcRegistrationsAdapter {
     }
 
 
-    @Override
-    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-        return new CustomRequestMappingHandlerMapping();
-    }
+//    @Override
+//    public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
+//        return new CustomRequestMappingHandlerMapping();
+//    }
 
 
     /**

