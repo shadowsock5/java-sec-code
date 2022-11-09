@@ -1,0 +1,31 @@
+#server:
+#  port: 8877
+#
+#spring:
+#  cloud:
+#    nacos:
+#      config:
+#        name: application-my
+#        file-extension: yaml
+#        group: DEFAULT_GROUP
+#        server-addr: 192.168.17.128:8848
+#      discovery:
+#        server-addr: 192.168.17.128:8848
+#
+#joychou:
+#  business:
+#    callback: callback_
+#  security:
+#    jsonp:
+#      callback: callback, _callback
+#      referer:
+#        check:
+#          enabled: true
+#    csrf:
+#      method: POST
+#      exclude:
+#        url: /xxe/**, /fastjson/**, /xstream/**, /ssrf/**, /spel/vuln
+#      enabled: false
+#    referer:
+#      host: joychou.org, joychou.com
+#      uri: /jsonp/**
